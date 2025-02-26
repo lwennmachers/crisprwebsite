@@ -3,44 +3,193 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Level 2: Applications in Cystic Fibrosis</title>
+    <title>Level 2: CRISPR Applications in Cystic Fibrosis</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: rgb(249, 249, 249);
+        background-color: rgb(245, 245, 245);
         margin: 0;
         padding: 0;
       }
       header {
         text-align: center;
-        background-color: rgb(76, 175, 80);
+        background: linear-gradient(
+          to right,
+          rgb(33, 150, 243),
+          rgb(25, 118, 210)
+        );
         color: white;
-        padding: 20px;
-        border-radius: 10px;
+        padding: 40px;
+        border-radius: 0 0 10px 10px;
+        margin-bottom: 20px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
       }
       main {
         padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: rgb(33, 150, 243);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      p {
+        line-height: 1.6;
+        color: rgb(80, 80, 80);
+      }
+      .interactive {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 10px;
+        background-color: rgb(250, 250, 250);
         text-align: center;
       }
+      .drag-container,
+      .drop-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
+      }
+      .droppable {
+        width: 150px;
+        height: 50px;
+        background-color: rgb(200, 230, 201);
+        border: 2px dashed rgb(76, 175, 80);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+      .draggable {
+        width: 120px;
+        height: 40px;
+        background-color: rgb(255, 193, 7);
+        text-align: center;
+        line-height: 40px;
+        cursor: grab;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      #dragFeedback {
+        margin-top: 10px;
+        color: rgb(33, 150, 243);
+      }
       a {
-        color: rgb(76, 175, 80);
+        display: inline-block;
+        margin-top: 20px;
+        background-color: rgb(255, 87, 34);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
         text-decoration: none;
+        transition: background-color 0.3s;
       }
       a:hover {
-        text-decoration: underline;
+        background-color: rgb(230, 74, 25);
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>Level 2: Applications in Cystic Fibrosis</h1>
+      <h1>Level 2: CRISPR Applications in Cystic Fibrosis</h1>
     </header>
     <main>
-      <p>
-        Discover how CRISPR can repair the defective CFTR gene and transform
-        cystic fibrosis treatment.
-      </p>
-      <a href="index.html">Back to Mainpage</a>
+      <section>
+        <h2>How Can CRISPR Treat Cystic Fibrosis?</h2>
+        <p>
+          Cystic fibrosis (CF) is a genetic disorder caused by mutations in the
+          <strong>CFTR</strong> gene, leading to the buildup of thick mucus in
+          the lungs, pancreas, and other organs. This thick mucus can cause
+          severe respiratory and digestive problems. CRISPR is being researched
+          as a potential treatment for CF by targeting and correcting these
+          mutations. Using CRISPR-Cas9, scientists can cut out the faulty
+          section of DNA and replace it with a corrected version, restoring
+          normal function. This technique has shown promise in laboratory
+          studies, with the potential to provide a long-term or even permanent
+          solution by fixing the root cause of the disease at the genetic level.
+        </p>
+        <p>Watch this video to learn more:</p>
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/TbdZrcl_Jso"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
+      </section>
+
+      <section class="interactive">
+        <h2>Match the CRISPR Components</h2>
+        <p>Drag and drop the correct CRISPR components to their functions.</p>
+        <div class="drag-container">
+          <!-- The items are scrambled so it's not obvious -->
+          <div class="draggable" draggable="true" id="gRNA">gRNA</div>
+          <div class="draggable" draggable="true" id="PAM">PAM Sequence</div>
+          <div class="draggable" draggable="true" id="Cas9">Cas9</div>
+        </div>
+        <div class="drop-container">
+          <!-- data-correct attributes define the correct answer for each drop zone -->
+          <div class="droppable" data-correct="PAM">Recognition site</div>
+          <div class="droppable" data-correct="Cas9">Cuts DNA</div>
+          <div class="droppable" data-correct="gRNA">
+            Guides Cas9 to the target
+          </div>
+        </div>
+        <p id="dragFeedback"></p>
+        <button onclick="checkDragMatch()">Submit</button>
+      </section>
+
+      <a href="index.html">Back to Homepage</a>
     </main>
+
+    <script>
+      // Enable dragging
+      document.querySelectorAll(".draggable").forEach((item) => {
+        item.addEventListener("dragstart", (event) => {
+          // Store the id of the dragged element
+          event.dataTransfer.setData("text", event.target.id);
+        });
+      });
+
+      // Handle dropping
+      document.querySelectorAll(".droppable").forEach((zone) => {
+        // Allow drop
+        zone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+        });
+        zone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          // Get the id of the dragged element
+          const draggedId = event.dataTransfer.getData("text");
+          // Show the text of the dragged item in this droppable zone
+          event.target.textContent =
+            document.getElementById(draggedId).textContent;
+          // Track what was dropped here
+          event.target.dataset.matched = draggedId;
+        });
+      });
+
+      // Check if each droppable has the correct item
+      function checkDragMatch() {
+        let allCorrect = true;
+        document.querySelectorAll(".droppable").forEach((zone) => {
+          // If the item matched is not the item we expect
+          if (zone.dataset.matched !== zone.dataset.correct) {
+            allCorrect = false;
+          }
+        });
+        const feedback = document.getElementById("dragFeedback");
+        feedback.textContent = allCorrect
+          ? "Great job! You matched the CRISPR components correctly!"
+          : "Some matches are incorrect. Try again!";
+      }
+    </script>
   </body>
 </html>
