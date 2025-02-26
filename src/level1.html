@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Level 1: Interactive CRISPR</title>
+    <title>Level 1: How CRISPR Works</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -24,9 +24,6 @@
         margin-bottom: 20px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
       }
-      header h1 {
-        font-size: 2rem;
-      }
       main {
         padding: 20px;
         max-width: 800px;
@@ -34,9 +31,6 @@
         background: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      section {
-        margin-bottom: 20px;
       }
       h2 {
         color: rgb(76, 175, 80);
@@ -53,6 +47,16 @@
         border-radius: 10px;
         margin: 20px 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .questions {
+        margin-top: 20px;
+      }
+      select {
+        margin-bottom: 10px;
+      }
+      #feedback {
+        margin-top: 10px;
+        color: rgb(76, 175, 80);
       }
       .interactive {
         margin-top: 20px;
@@ -77,15 +81,16 @@
       a {
         display: inline-block;
         margin-top: 20px;
-        background-color: rgb(76, 175, 80);
+        background-color: rgb(255, 87, 34);
         color: white;
         padding: 10px 20px;
         border-radius: 5px;
         text-decoration: none;
         transition: background-color 0.3s;
+        margin-right: 10px;
       }
       a:hover {
-        background-color: rgb(56, 142, 60);
+        background-color: rgb(230, 74, 25);
       }
       .hidden {
         display: none;
@@ -110,93 +115,81 @@
           for a variety of applications, from correcting mutations to advancing
           biological research.
         </p>
-        <img src="crispr.jpg" alt="DNA Double Helix" />
+        <img src="level1.jpg" alt="DNA Double Helix" />
         <p>
           The CRISPR system interacts with key DNA features to execute its
           functionality:
         </p>
         <ul>
           <li>
-            <strong>Guide RNA (gRNA):</strong> Guides the Cas9 protein to the
-            exact target DNA sequence.
+            <strong>Guide RNA (gRNA):</strong> Guides Cas9 to the target DNA
+            sequence.
           </li>
           <li>
-            <strong>Cas9 Protein:</strong> Functions as molecular scissors to
-            make precise cuts in the DNA.
+            <strong>Cas9 Protein:</strong> Molecular scissors to make precise
+            cuts in DNA.
           </li>
           <li>
-            <strong>Protospacer Adjacent Motif (PAM):</strong> A sequence that
-            must be present near the target DNA for Cas9 to bind.
+            <strong>Protospacer Adjacent Motif (PAM):</strong> A recognition
+            site near the target DNA.
           </li>
         </ul>
         <button onclick="hideInfo()">Start Questions</button>
       </section>
-      <section id="questionSection" class="hidden">
+
+      <section id="questionSection" class="hidden questions">
         <h2>Interactive Questions</h2>
-        <div class="interactive">
-          <p><strong>Question 1:</strong> What does the Cas9 protein do?</p>
-          <select id="q1">
-            <option value="">--Choose--</option>
-            <option value="correct">Cuts DNA</option>
-            <option value="wrong1">Replicates DNA</option>
-            <option value="wrong2">Transcribes RNA</option>
-          </select>
+        <p><strong>Question 1:</strong> What does the Cas9 protein do?</p>
+        <select id="q1">
+          <option value="">--Choose--</option>
+          <option value="correct">Cuts DNA</option>
+          <option value="wrong1">Replicates DNA</option>
+          <option value="wrong2">Transcribes RNA</option>
+        </select>
 
-          <p>
-            <strong>Question 2:</strong> What guides the Cas9 protein to the
-            target DNA?
-          </p>
-          <select id="q2">
-            <option value="">--Choose--</option>
-            <option value="wrong1">Cas protein</option>
-            <option value="correct">Guide RNA (gRNA)</option>
-            <option value="wrong2">PAM sequence</option>
-          </select>
-
-          <p>
-            <strong>Question 3:</strong> What is the function of the PAM
-            sequence?
-          </p>
-          <select id="q3">
-            <option value="">--Choose--</option>
-            <option value="correct">Recognition signal for Cas9</option>
-            <option value="wrong1">Cuts DNA</option>
-            <option value="wrong2">Protects RNA</option>
-          </select>
-
-          <p>
-            <strong>Question 4:</strong> Why is gRNA important in the CRISPR
-            system?
-          </p>
-          <select id="q4">
-            <option value="">--Choose--</option>
-            <option value="correct">
-              It determines the target DNA sequence.
-            </option>
-            <option value="wrong1">It protects DNA from damage.</option>
-            <option value="wrong2">It replicates the DNA sequence.</option>
-          </select>
-
-          <button onclick="checkAnswers()">Submit Answers</button>
-          <button onclick="showInfo()">Back to Info</button>
-          <p
-            id="feedback"
-            style="margin-top: 10px; color: rgb(76, 175, 80)"
-          ></p>
-        </div>
-      </section>
-      <section>
-        <h2>Continue</h2>
         <p>
-          If you answer all questions correctly, you can proceed to the next
-          level.
+          <strong>Question 2:</strong> What guides the Cas9 protein to the
+          target DNA?
         </p>
-        <a id="nextLevel" href="level2.html" style="display: none"
-          >Go to Level 2</a
-        >
-        <a href="index.html">Back to Homepage</a>
-        <!-- Added button -->
+        <select id="q2">
+          <option value="">--Choose--</option>
+          <option value="wrong1">Cas protein</option>
+          <option value="correct">Guide RNA (gRNA)</option>
+          <option value="wrong2">PAM sequence</option>
+        </select>
+
+        <p>
+          <strong>Question 3:</strong> What is the function of the PAM sequence?
+        </p>
+        <select id="q3">
+          <option value="">--Choose--</option>
+          <option value="correct">Recognition signal for Cas9</option>
+          <option value="wrong1">Cuts DNA</option>
+          <option value="wrong2">Protects RNA</option>
+        </select>
+
+        <p>
+          <strong>Question 4:</strong> Why is gRNA important in the CRISPR
+          system?
+        </p>
+        <select id="q4">
+          <option value="">--Choose--</option>
+          <option value="correct">
+            It determines the target DNA sequence.
+          </option>
+          <option value="wrong1">It protects DNA from damage.</option>
+          <option value="wrong2">It replicates the DNA sequence.</option>
+        </select>
+
+        <button onclick="checkAnswers()">Submit Answers</button>
+        <p id="feedback"></p>
       </section>
+
+      <!-- Navigation Buttons -->
+      <div style="margin-top: 30px">
+        <a href="index.html">Back to Homepage</a>
+        <a href="level2.html">Continue to Level 2</a>
+      </div>
     </main>
 
     <script>
@@ -205,18 +198,12 @@
         document.getElementById("questionSection").className = "visible";
       }
 
-      function showInfo() {
-        document.getElementById("infoSection").className = "visible";
-        document.getElementById("questionSection").className = "hidden";
-      }
-
       function checkAnswers() {
         const q1 = document.getElementById("q1").value;
         const q2 = document.getElementById("q2").value;
         const q3 = document.getElementById("q3").value;
         const q4 = document.getElementById("q4").value;
         const feedback = document.getElementById("feedback");
-        const nextLevel = document.getElementById("nextLevel");
 
         if (
           q1 === "correct" &&
@@ -226,11 +213,9 @@
         ) {
           feedback.textContent =
             "Great job! You answered all the questions correctly.";
-          nextLevel.style.display = "inline-block";
         } else {
           feedback.textContent =
             "Some answers are incorrect. Please try again.";
-          nextLevel.style.display = "none";
         }
       }
     </script>

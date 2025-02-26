@@ -89,6 +89,7 @@
         border-radius: 5px;
         text-decoration: none;
         transition: background-color 0.3s;
+        margin-right: 10px;
       }
       a:hover {
         background-color: rgb(230, 74, 25);
@@ -104,15 +105,11 @@
         <h2>How Can CRISPR Treat Cystic Fibrosis?</h2>
         <p>
           Cystic fibrosis (CF) is a genetic disorder caused by mutations in the
-          <strong>CFTR</strong> gene, leading to the buildup of thick mucus in
-          the lungs, pancreas, and other organs. This thick mucus can cause
-          severe respiratory and digestive problems. CRISPR is being researched
-          as a potential treatment for CF by targeting and correcting these
-          mutations. Using CRISPR-Cas9, scientists can cut out the faulty
-          section of DNA and replace it with a corrected version, restoring
-          normal function. This technique has shown promise in laboratory
-          studies, with the potential to provide a long-term or even permanent
-          solution by fixing the root cause of the disease at the genetic level.
+          <strong>CFTR</strong> gene, leading to thick mucus in the lungs,
+          pancreas, and other organs. CRISPR can potentially correct these
+          mutations at the DNA level by using the Cas9 protein to cut out faulty
+          sections and replace them with healthy ones—offering a long-term
+          solution to the root cause of CF.
         </p>
         <p>Watch this video to learn more:</p>
         <iframe
@@ -129,13 +126,11 @@
         <h2>Match the CRISPR Components</h2>
         <p>Drag and drop the correct CRISPR components to their functions.</p>
         <div class="drag-container">
-          <!-- The items are scrambled so it's not obvious -->
           <div class="draggable" draggable="true" id="gRNA">gRNA</div>
           <div class="draggable" draggable="true" id="PAM">PAM Sequence</div>
           <div class="draggable" draggable="true" id="Cas9">Cas9</div>
         </div>
         <div class="drop-container">
-          <!-- data-correct attributes define the correct answer for each drop zone -->
           <div class="droppable" data-correct="PAM">Recognition site</div>
           <div class="droppable" data-correct="Cas9">Cuts DNA</div>
           <div class="droppable" data-correct="gRNA">
@@ -146,41 +141,37 @@
         <button onclick="checkDragMatch()">Submit</button>
       </section>
 
-      <a href="index.html">Back to Homepage</a>
+      <div style="margin-top: 30px">
+        <a href="index.html">Back to Homepage</a>
+        <a href="level3.html">Continue to Level 3</a>
+      </div>
     </main>
 
     <script>
-      // Enable dragging
+      // Drag handling
       document.querySelectorAll(".draggable").forEach((item) => {
         item.addEventListener("dragstart", (event) => {
-          // Store the id of the dragged element
           event.dataTransfer.setData("text", event.target.id);
         });
       });
 
-      // Handle dropping
+      // Drop handling
       document.querySelectorAll(".droppable").forEach((zone) => {
-        // Allow drop
         zone.addEventListener("dragover", (event) => {
           event.preventDefault();
         });
         zone.addEventListener("drop", (event) => {
           event.preventDefault();
-          // Get the id of the dragged element
           const draggedId = event.dataTransfer.getData("text");
-          // Show the text of the dragged item in this droppable zone
           event.target.textContent =
             document.getElementById(draggedId).textContent;
-          // Track what was dropped here
           event.target.dataset.matched = draggedId;
         });
       });
 
-      // Check if each droppable has the correct item
       function checkDragMatch() {
         let allCorrect = true;
         document.querySelectorAll(".droppable").forEach((zone) => {
-          // If the item matched is not the item we expect
           if (zone.dataset.matched !== zone.dataset.correct) {
             allCorrect = false;
           }
