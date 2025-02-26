@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level 1: Interactive CRISPR</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(245, 245, 245);
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        text-align: center;
+        background: linear-gradient(
+          to right,
+          rgb(76, 175, 80),
+          rgb(56, 142, 60)
+        );
+        color: white;
+        padding: 40px;
+        border-radius: 0 0 10px 10px;
+        margin-bottom: 20px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      main {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      section {
+        margin-bottom: 20px;
+      }
+      h2 {
+        color: rgb(76, 175, 80);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        color: rgb(80, 80, 80);
+      }
+      img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .interactive {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 10px;
+        background-color: rgb(250, 250, 250);
+      }
+      button {
+        margin-top: 10px;
+        background-color: rgb(255, 87, 34);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: rgb(230, 74, 25);
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: rgb(76, 175, 80);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      a:hover {
+        background-color: rgb(56, 142, 60);
+      }
+      .hidden {
+        display: none;
+      }
+      .visible {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Level 1: How CRISPR Works</h1>
+    </header>
+    <main>
+      <section id="infoSection" class="visible">
+        <h2>Welcome to Level 1</h2>
+        <p>
+          CRISPR-Cas9 is a revolutionary tool that allows scientists to make
+          precise edits to DNA. At its core, CRISPR relies on a guide RNA (gRNA)
+          to target specific DNA sequences, and the Cas9 protein to cut the DNA
+          at the desired location. This mechanism enables genetic engineering
+          for a variety of applications, from correcting mutations to advancing
+          biological research.
+        </p>
+        <img src="crispr.jpg" alt="DNA Double Helix" />
+        <p>
+          The CRISPR system interacts with key DNA features to execute its
+          functionality:
+        </p>
+        <ul>
+          <li>
+            <strong>Guide RNA (gRNA):</strong> Guides the Cas9 protein to the
+            exact target DNA sequence.
+          </li>
+          <li>
+            <strong>Cas9 Protein:</strong> Functions as molecular scissors to
+            make precise cuts in the DNA.
+          </li>
+          <li>
+            <strong>Protospacer Adjacent Motif (PAM):</strong> A sequence that
+            must be present near the target DNA for Cas9 to bind.
+          </li>
+        </ul>
+        <button onclick="hideInfo()">Start Questions</button>
+      </section>
+      <section id="questionSection" class="hidden">
+        <h2>Interactive Questions</h2>
+        <div class="interactive">
+          <p><strong>Question 1:</strong> What does the Cas9 protein do?</p>
+          <select id="q1">
+            <option value="">--Choose--</option>
+            <option value="correct">Cuts DNA</option>
+            <option value="wrong1">Replicates DNA</option>
+            <option value="wrong2">Transcribes RNA</option>
+          </select>
+
+          <p>
+            <strong>Question 2:</strong> What guides the Cas9 protein to the
+            target DNA?
+          </p>
+          <select id="q2">
+            <option value="">--Choose--</option>
+            <option value="wrong1">Cas protein</option>
+            <option value="correct">Guide RNA (gRNA)</option>
+            <option value="wrong2">PAM sequence</option>
+          </select>
+
+          <p>
+            <strong>Question 3:</strong> What is the function of the PAM
+            sequence?
+          </p>
+          <select id="q3">
+            <option value="">--Choose--</option>
+            <option value="correct">Recognition signal for Cas9</option>
+            <option value="wrong1">Cuts DNA</option>
+            <option value="wrong2">Protects RNA</option>
+          </select>
+
+          <p>
+            <strong>Question 4:</strong> Why is gRNA important in the CRISPR
+            system?
+          </p>
+          <select id="q4">
+            <option value="">--Choose--</option>
+            <option value="correct">
+              It determines the target DNA sequence.
+            </option>
+            <option value="wrong1">It protects DNA from damage.</option>
+            <option value="wrong2">It replicates the DNA sequence.</option>
+          </select>
+
+          <button onclick="checkAnswers()">Submit Answers</button>
+          <button onclick="showInfo()">Back to Info</button>
+          <p
+            id="feedback"
+            style="margin-top: 10px; color: rgb(76, 175, 80)"
+          ></p>
+        </div>
+      </section>
+      <section>
+        <h2>Continue</h2>
+        <p>
+          If you answer all questions correctly, you can proceed to the next
+          level.
+        </p>
+        <a id="nextLevel" href="level2.html" style="display: none"
+          >Go to Level 2</a
+        >
+        <a href="index.html">Back to Homepage</a>
+        <!-- Added button -->
+      </section>
+    </main>
+
+    <script>
+      function hideInfo() {
+        document.getElementById("infoSection").className = "hidden";
+        document.getElementById("questionSection").className = "visible";
+      }
+
+      function showInfo() {
+        document.getElementById("infoSection").className = "visible";
+        document.getElementById("questionSection").className = "hidden";
+      }
+
+      function checkAnswers() {
+        const q1 = document.getElementById("q1").value;
+        const q2 = document.getElementById("q2").value;
+        const q3 = document.getElementById("q3").value;
+        const q4 = document.getElementById("q4").value;
+        const feedback = document.getElementById("feedback");
+        const nextLevel = document.getElementById("nextLevel");
+
+        if (
+          q1 === "correct" &&
+          q2 === "correct" &&
+          q3 === "correct" &&
+          q4 === "correct"
+        ) {
+          feedback.textContent =
+            "Great job! You answered all the questions correctly.";
+          nextLevel.style.display = "inline-block";
+        } else {
+          feedback.textContent =
+            "Some answers are incorrect. Please try again.";
+          nextLevel.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

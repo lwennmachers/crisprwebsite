@@ -6,74 +6,124 @@
     <title>CRISPR Interactive Website</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: rgb(249, 249, 249);
+        font-family: "Arial", sans-serif;
+        background-color: rgb(245, 245, 245);
         margin: 0;
         padding: 0;
       }
       header {
         text-align: center;
-        background-color: rgb(76, 175, 80);
-        color: rgb(255, 255, 255);
-        padding: 20px;
-        border-radius: 10px;
+        background: linear-gradient(
+          to right,
+          rgb(76, 175, 80),
+          rgb(56, 142, 60)
+        );
+        color: white;
+        padding: 40px;
+        border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
         margin: 20px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow */
+      }
+      header h1 {
+        font-size: 2.5rem;
+        margin: 0;
+      }
+      header p {
+        font-size: 1.2rem;
+        margin: 10px 0 0;
       }
       main {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr; /* Single column for small screens */
+        justify-content: center; /* Center the grid items */
+        gap: 20px; /* Add spacing between cards */
         padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
       }
       .card {
-        background-color: rgb(255, 255, 255);
+        background-color: white;
         border: 1px solid rgb(221, 221, 221);
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 20px;
         text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
       }
       .card img {
         width: 100%;
-        height: 150px;
+        height: auto;
+        max-height: 200px;
         object-fit: cover;
         border-radius: 10px;
+        margin-bottom: 15px;
       }
       .card h2 {
         color: rgb(76, 175, 80);
+        font-size: 1.5rem;
         margin: 10px 0;
       }
       .card p {
         margin: 10px 0;
+        font-size: 1rem;
+        color: rgb(100, 100, 100);
       }
       .button {
         background-color: rgb(255, 87, 34);
-        color: rgb(255, 255, 255);
+        color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         text-decoration: none;
+        font-size: 1rem;
+        transition: background-color 0.3s, transform 0.3s;
       }
       .button:hover {
         background-color: rgb(230, 74, 25);
+        transform: scale(1.05); /* Slight scaling */
       }
       footer {
         text-align: center;
         padding: 20px;
-        background-color: rgb(241, 241, 241);
+        background: linear-gradient(
+          to right,
+          rgb(240, 240, 240),
+          rgb(220, 220, 220)
+        );
+        border-top: 1px solid rgb(200, 200, 200);
         margin-top: 20px;
+        font-size: 0.9rem;
+        color: rgb(100, 100, 100);
       }
       footer a {
         color: rgb(76, 175, 80);
         text-decoration: none;
+        font-weight: bold;
       }
       footer a:hover {
         text-decoration: underline;
       }
       @media (min-width: 768px) {
         main {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(
+            2,
+            1fr
+          ); /* Two columns for medium screens */
+          gap: 30px; /* Increased gap for larger screens */
+        }
+      }
+      @media (min-width: 1024px) {
+        main {
+          grid-template-columns: repeat(
+            3,
+            1fr
+          ); /* Three columns for large screens */
+          gap: 30px; /* Increased gap */
         }
       }
     </style>
@@ -89,55 +139,43 @@
 
     <main>
       <div class="card">
-        <img
-          src="https://via.placeholder.com/300x150?text=Homepage"
-          alt="Homepage"
-        />
+        <img src="./homepage.jpg" alt="Homepage" />
         <h2>Homepage</h2>
         <p>
           Learn the basics of CRISPR technology and navigate through its
           applications and ethical considerations.
         </p>
-        <a href="#homepage" class="button">Explore the Homepage</a>
+        <a href="homepage.html" class="button">Get an Introduction</a>
       </div>
 
       <div class="card">
-        <img
-          src="https://via.placeholder.com/300x150?text=Level+1"
-          alt="Level 1"
-        />
+        <img src="./level1.jpg" alt="Level 1" />
         <h2>Level 1: How CRISPR Works</h2>
         <p>
           Understand the step-by-step process of CRISPR-Cas9 technology and its
           role in editing DNA.
         </p>
-        <a href="#level1" class="button">Go to Level 1</a>
+        <a href="level1.html" class="button">Go to Level 1</a>
       </div>
 
       <div class="card">
-        <img
-          src="https://via.placeholder.com/300x150?text=Level+2"
-          alt="Level 2"
-        />
+        <img src="./level2.jpg" alt="Level 2" />
         <h2>Level 2: Applications in Cystic Fibrosis</h2>
         <p>
           Discover how CRISPR can repair the defective CFTR gene and transform
           cystic fibrosis treatment.
         </p>
-        <a href="#level2" class="button">Go to Level 2</a>
+        <a href="level2.html" class="button">Go to Level 2</a>
       </div>
 
       <div class="card">
-        <img
-          src="https://via.placeholder.com/300x150?text=Level+3"
-          alt="Level 3"
-        />
+        <img src="./level3.jpg" alt="Level 3" />
         <h2>Level 3: Ethical Dilemmas</h2>
         <p>
           Explore ethical dilemmas through interactive decision-making
           scenarios.
         </p>
-        <a href="#level3" class="button">Go to Level 3</a>
+        <a href="level3.html" class="button">Go to Level 3</a>
       </div>
     </main>
 
