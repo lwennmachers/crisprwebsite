@@ -49,15 +49,24 @@
         background-color: rgb(250, 250, 250);
         text-align: center;
       }
-      .drag-container,
+      /* Drag-and-drop containers */
+      .drag-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
       .drop-container {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
         gap: 20px;
+        justify-content: center;
         margin-top: 15px;
       }
       .droppable {
-        width: 150px;
+        width: 200px;
         height: 50px;
         background-color: rgb(200, 230, 201);
         border: 2px dashed rgb(76, 175, 80);
@@ -67,7 +76,7 @@
         font-weight: bold;
       }
       .draggable {
-        width: 120px;
+        width: 180px;
         height: 40px;
         background-color: rgb(255, 193, 7);
         text-align: center;
@@ -109,7 +118,11 @@
           other organs. Researchers are exploring CRISPR gene editing to correct
           these genetic mutations at the DNA level. By replacing faulty CFTR
           sections with healthy ones, CRISPR could potentially provide a
-          long-term solution to the root cause of CF.
+          long-term solution to the root cause of CF. When successful, this
+          process can lead to <strong>less thick mucus</strong>,
+          <strong>fewer lung infections</strong>, and
+          <strong>improved overall lung function</strong>, giving patients a
+          significantly better quality of life.
         </p>
         <p>
           <strong>Want to learn more?</strong> Check out
@@ -122,23 +135,59 @@
           </a>
           for detailed information on CF and current research.
         </p>
+        <h3>CF-Related Video</h3>
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/Sp774i6tdzE"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
       </section>
 
       <section class="interactive">
-        <h2>Match the CRISPR Components</h2>
-        <p>Drag and drop the correct CRISPR components to their functions.</p>
+        <h2>How CRISPR Can Improve CF: Drag and Drop</h2>
+        <p>
+          Drag the correct improvements CRISPR could bring for CF patients to
+          each benefit below:
+        </p>
+
+        <!-- All Draggables -->
         <div class="drag-container">
-          <div class="draggable" draggable="true" id="gRNA">gRNA</div>
-          <div class="draggable" draggable="true" id="PAM">PAM Sequence</div>
-          <div class="draggable" draggable="true" id="Cas9">Cas9</div>
-        </div>
-        <div class="drop-container">
-          <div class="droppable" data-correct="PAM">Recognition site</div>
-          <div class="droppable" data-correct="Cas9">Cuts DNA</div>
-          <div class="droppable" data-correct="gRNA">
-            Guides Cas9 to the target
+          <!-- 3 correct items -->
+          <div class="draggable" draggable="true" id="mucus">
+            Less Thick Mucus
+          </div>
+          <div class="draggable" draggable="true" id="infections">
+            Fewer Lung Infections
+          </div>
+          <div class="draggable" draggable="true" id="lungfunction">
+            Improved Lung Function
+          </div>
+          <!-- 3 decoy items -->
+          <div class="draggable" draggable="true" id="nocure">
+            No Cure at All
+          </div>
+          <div class="draggable" draggable="true" id="worsemucus">
+            Increases Mucus
+          </div>
+          <div class="draggable" draggable="true" id="moreinfections">
+            More Infections
           </div>
         </div>
+
+        <!-- 3 Droppables -->
+        <div class="drop-container">
+          <div class="droppable" data-correct="mucus">CRISPR Benefit #1</div>
+          <div class="droppable" data-correct="infections">
+            CRISPR Benefit #2
+          </div>
+          <div class="droppable" data-correct="lungfunction">
+            CRISPR Benefit #3
+          </div>
+        </div>
+
         <p id="dragFeedback"></p>
         <button onclick="checkDragMatch()">Submit</button>
       </section>
@@ -150,14 +199,14 @@
     </main>
 
     <script>
-      // Drag handling
+      // Draggables
       document.querySelectorAll(".draggable").forEach((item) => {
         item.addEventListener("dragstart", (event) => {
           event.dataTransfer.setData("text", event.target.id);
         });
       });
 
-      // Drop handling
+      // Droppables
       document.querySelectorAll(".droppable").forEach((zone) => {
         zone.addEventListener("dragover", (event) => {
           event.preventDefault();
@@ -180,8 +229,8 @@
         });
         const feedback = document.getElementById("dragFeedback");
         feedback.textContent = allCorrect
-          ? "Great job! You matched the CRISPR components correctly!"
-          : "Some matches are incorrect. Try again!";
+          ? "Great job! You identified how CRISPR can improve CF conditions!"
+          : "Some answers are incorrect. Try again!";
       }
     </script>
   </body>
